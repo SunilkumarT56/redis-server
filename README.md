@@ -91,7 +91,7 @@ Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/yourusername/redis-lite.git
-cd redis-lite
+cd redis-server
 npm install
 ```
 
