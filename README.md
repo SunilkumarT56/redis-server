@@ -1,6 +1,7 @@
-<<<<<<< HEAD
+<div align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis Logo" width="120" />
+</div>
 
-=======
 # Redis-Lite: A Redis-Inspired In-Memory Data Store
 
 ## 📌 Project Overview
@@ -135,4 +136,3 @@ Building this project reinforced several critical systems engineering concepts:
 ---
 
 _Built with ❤️ by Sunil Kumar_
->>>>>>> 2173334 (modify the readme)
