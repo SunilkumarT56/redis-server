@@ -9,6 +9,7 @@ import {
   writeBulkString,
   writeNull,
 } from "./helpers/respConverter.js";
+import { parseConfig, ensureDataDir } from "./config/config.js";
 
 const server = net.createServer((socket) => {
   socket.on("data", (data) => {
@@ -25,5 +26,9 @@ const server = net.createServer((socket) => {
     }
   });
 });
+const parsedConfig = parseConfig(
+  "/Users/sunilkumar/Projects/redis-server/redis.config",
+);
+ensureDataDir(parsedConfig.dir);
 
 server.listen(6379, () => {});

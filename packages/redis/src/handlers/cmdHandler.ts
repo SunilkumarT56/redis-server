@@ -1,4 +1,4 @@
-import { DB } from "../utils/map.js";
+import { DB } from "../utils/db.js";
 import { Socket } from "net";
 import {
   writeError,
@@ -27,7 +27,7 @@ const setHandler = (v: string[]) => {
   const name = cmd[0]!;
   const value = cmd[1]!;
   DB.set(name, value);
-  return writeSimpleString(value);
+  return writeSimpleString("OK");
 };
 const Router = new Map<string, (v: string[]) => string>([
   ["GET", getHandler],
