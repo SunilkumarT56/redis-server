@@ -1,5 +1,12 @@
 <div align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis Logo" width="120" />
+  <br />
+  <br />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" width="30" height="30" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js (node:net)" width="30" height="30" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/RESP-Protocol-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="RESP" height="30" />
 </div>
 
 # Redis-Lite: A Redis-Inspired In-Memory Data Store
