@@ -20,5 +20,5 @@ const server = net.createServer((socket) => {
   });
 });
 server.listen(6379, () => {
-  console.log("server started on port 6379");
+  console.log("server started on Port 6379");
 });
