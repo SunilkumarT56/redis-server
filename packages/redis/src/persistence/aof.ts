@@ -1,4 +1,3 @@
-// src/persistence/aof.ts
 import fs from "fs";
 import path from "path";
 import type { PersistenceConfig } from "../types/types.d.js";
