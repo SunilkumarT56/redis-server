@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/config/config.ts","./src/handlers/cmdhandler.ts","./src/helpers/respconverter.ts","./src/types/types.d.ts","./src/utils/db.ts","./src/utils/parseresp.ts"],"errors":true,"version":"5.9.3"}

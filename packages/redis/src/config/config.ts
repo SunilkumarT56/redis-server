@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import os from "os";
-import type { Config } from "../types/types.d.ts";
+import type { PersistenceConfig } from "../types/types.d.ts";
 
 const { Always, EverySec, No } = {
   Always: "always",
@@ -9,15 +9,16 @@ const { Always, EverySec, No } = {
   No: "no",
 };
 
-export function parseConfig(filePath: string): Config {
+export function parseConfig(filePath: string): PersistenceConfig {
   const raw = fs.readFileSync(filePath, "utf-8");
   const lines = raw.split("\n");
 
-  const config: Config = {
+  const config: PersistenceConfig = {
     dir: "",
     appendonly: false,
     appendfilename: "",
     appendfsync: EverySec,
+    aofenabled: false,
     save: [],
     dbfilename: "",
   };
@@ -55,6 +56,12 @@ export function parseConfig(filePath: string): Config {
           throw new Error(`Invalid appendfsync value: ${value}`);
         }
         config.appendfsync = value!;
+        break;
+      }
+
+      case "aofenabled": {
+        const value = parts[1];
+        config.aofenabled = value === "yes";
         break;
       }
 

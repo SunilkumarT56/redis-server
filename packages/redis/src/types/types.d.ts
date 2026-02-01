@@ -3,11 +3,12 @@ export type Value =
   | { type: "$"; bulk: string }
   | { type: "*"; array: Value[] };
 
-export type Config = {
+export type PersistenceConfig= {
   dir: string;
   appendonly: boolean;
   appendfilename: string;
   appendfsync: string;
+  aofenabled: boolean;
   save: {
     time: number;
     changes: number;

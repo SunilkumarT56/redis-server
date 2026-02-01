@@ -1,45 +1,62 @@
-import { DB } from "../utils/db.js";
 import { Socket } from "net";
 import {
   writeError,
   writeSimpleString,
-  writeInteger,
   writeBulkString,
   writeNull,
 } from "../helpers/respConverter.js";
+import { Store } from "../store.js";
 
-const getHandler = (v: string[]) => {
+const getHandler = (store: Store, v: string[]) => {
   const cmd = v.slice(1);
   if (cmd.length !== 1) {
     return writeError("Invalid no of arguments for 'GET' command");
   }
-  const name = cmd[0]!;
-  if (!DB.has(name)) {
+
+  const key = cmd[0]!;
+  const value = store.get(key);
+
+  if (value === null) {
     return writeNull();
   }
-  return writeBulkString(DB.get(name)!);
+
+  return writeBulkString(value);
 };
-const setHandler = (v: string[]) => {
+
+const setHandler = (store: Store, v: string[]) => {
   const cmd = v.slice(1);
   if (cmd.length !== 2) {
     return writeError("Invalid no of arguments for 'SET' command");
   }
-  const name = cmd[0]!;
+
+  const key = cmd[0]!;
   const value = cmd[1]!;
-  DB.set(name, value);
+
+  store.set(key, value);
   return writeSimpleString("OK");
 };
-const Router = new Map<string, (v: string[]) => string>([
+
+const Router = new Map<
+  string,
+  (store: Store, v: string[]) => string
+>([
   ["GET", getHandler],
   ["SET", setHandler],
   ["COMMAND", () => writeSimpleString("OK")],
 ]);
 
-export const handler = (socket: Socket, command: string[]) => {
+export const handler = (
+  socket: Socket,
+  store: Store,
+  command: string[]
+) => {
   const cmd = command[0]!.toUpperCase();
-  if (Router.has(cmd)) {
-    socket.write(Router.get(cmd)!(command));
-  } else {
+
+  if (!Router.has(cmd)) {
     socket.write(writeError("unknown command"));
+    return;
   }
+
+  const response = Router.get(cmd)!(store, command);
+  socket.write(response);
 };
